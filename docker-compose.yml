@@ -1,0 +1,38 @@
+version: '3.9'
+
+# networks:
+#   app-network:
+#     name: app-network
+#     driver: bridge
+
+services:
+  app-database:
+    image: postgres
+    container_name: app-database
+    restart: always
+    # networks:
+    #   - 'app-network'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./database/postgres:/database/postgres
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=password
+
+  # app-backend:
+  #   build: .
+  #   restart: always
+  #   container_name: app-backend
+  #   networks:
+  #     - 'app-network'
+  #   ports:
+  #     - 3333:3333
+  #     - 9229:9229
+  #   volumes:
+  #     - ./src:/app/backend/src
+  #   links:
+  #     - app-database
+  #   depends_on:
+  #     - app-database

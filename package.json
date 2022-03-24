@@ -1,0 +1,62 @@
+{
+  "name": "prisma-graphql-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "docker-prune": "docker-compose down && docker system prune -a -f --volumes",
+    "docker-up": "docker-compose up -d && yarn orm migration:run && yarn seed:admin",
+    "docker-restart": "docker-compose down && docker-compose up -d && yarn orm migration:run && yarn seed:admin",
+    "upgrade-all": "yarn yarn-upgrade-all",
+    "test": "jest --runInBand --detectOpenHandles",
+    "build": "babel src --extensions \".ts,.js\" --out-dir dist --copy-files ",
+    "dev": "ts-node-dev --poll --respawn -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.7",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@graphql-tools/utils": "^8.6.5",
+    "@prisma/client": "^3.11.0",
+    "@types/graphql-fields": "^1.3.4",
+    "@types/jest": "^27.4.1",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
+    "class-validator": "^0.13.2",
+    "eslint": "^8.9.0",
+    "eslint-plugin-react": "^7.28.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.16.0",
+    "graphql-tools": "^8.2.3",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
+    "prisma": "^3.11.0",
+    "reflect-metadata": "^0.1.13",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.3",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.12.0",
+    "tslib": "^2.3.1",
+    "type-graphql": "^1.1.1",
+    "typegraphql-prisma": "^0.19.2",
+    "typescript": "^4.5.5",
+    "dotenv": "^16.0.0",
+    "graphql": "^15.3.0",
+    "yarn-upgrade-all": "^0.6.1"
+  },
+  "dependencies": {
+    "apollo-server": "^3.6.5",
+    "uuid": "^8.3.2"
+  }
+}
